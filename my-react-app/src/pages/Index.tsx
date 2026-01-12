@@ -14,6 +14,10 @@ import heroImage from "@/assets/home-hero.jpeg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperType } from "swiper";
 import { Autoplay, Navigation } from "swiper/modules";
+import award1 from "@/assets/award1.png";
+import award2 from "@/assets/award2.png";
+import award3 from "@/assets/award3.png";
+import award4 from "@/assets/award4.png";
 
 // @ts-ignore
 import "swiper/css";
@@ -56,26 +60,26 @@ const awards = [
     title: "Excellence Award",
     subtitle: "",
     image:
-      "https://images.unsplash.com/photo-1603575448878-868a20723f5d?q=80&w=800",
+       award1,
   },
 
   {
     title: "Industry Recognition",
     subtitle: "",
     image:
-      "https://images.unsplash.com/photo-1521412644187-c49fa049e84d?fit=crop&w=800&q=80",
+      award2,
   },
     {
     title: "Industry Recognition",
     subtitle: "",
     image:
-      "https://images.unsplash.com/photo-1521412644187-c49fa049e84d?fit=crop&w=800&q=80",
+      award3,
   },
   {
     title: "Star Performer",
     subtitle: "",
     image:
-      "https://images.unsplash.com/photo-1581090700227-1e37b190418e?q=80&w=800",
+      award4,
   },
 ];
 
