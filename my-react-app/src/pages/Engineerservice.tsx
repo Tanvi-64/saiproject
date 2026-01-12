@@ -52,11 +52,11 @@ const Engineerservice = () => {
       </section>
 
       {/* SERVICES GRID */}
-      <section className="relative mt-24 px-8 py-2 bg-white mb-7">
+      <section className="relative mt-24 px-4 md:px-8 py-2 bg-white mb-7">
         {/* Background Overlay */}
         <div className="absolute inset-0 bg-slate-100 opacity-90 -mt-14" />
 
-        <div className="relative z-10 grid grid-cols-3 gap-8 justify-items-center">
+        <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
           {[
             {
               icon: "bx bx-chip",
@@ -91,12 +91,12 @@ const Engineerservice = () => {
           ].map((item, index) => (
             <div
               key={index}
-              className="w-[360px] h-[280px] bg-white p-10 rounded-2xl
+              className="w-full max-w-[360px] min-h-[280px] bg-white p-6 md:p-10 rounded-2xl
                          shadow-xl border border-gray-200 text-center
                          transition-all duration-300
-                         hover:-translate-y-3 hover:shadow-2xl"
+                         hover:-translate-y-3 hover:shadow-2xl flex flex-col items-center justify-center"
             >
-              <i className={`${item.icon} text-[4rem] text-accent mb-4`} />
+              <i className={`${item.icon} text-5xl md:text-[4rem] text-accent mb-4`} />
               <h3 className="text-lg font-semibold text-foreground mb-4">
                 {item.title}
               </h3>

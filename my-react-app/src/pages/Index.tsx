@@ -120,7 +120,7 @@ Integrated EMS for{" "}
 
       </section> */}
       {/* Hero Section */}
-<section className="relative min-h-[90vh] flex items-center overflow-hidden">
+<section className="relative min-h-[90dvh] flex items-center overflow-hidden">
   {/* Background Image */}
   <div
     className="absolute inset-0 bg-cover bg-center bg-no-repeat"
@@ -387,8 +387,19 @@ Integrated EMS for{" "}
 
         <Swiper
           grabCursor
-          slidesPerView={4}
+          slidesPerView={1}
           spaceBetween={25}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+            },
+            768: {
+              slidesPerView: 3,
+            },
+            1024: {
+              slidesPerView: 4,
+            },
+          }}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,

@@ -73,7 +73,7 @@ const Header = () => {
           <nav className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-18 h-18 bg-white rounded-lg flex items-center justify-center">
+              <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center">
                 <img
                   src={saiicon}
                   alt="Sai TechnoWork Logo"
@@ -145,16 +145,16 @@ const Header = () => {
               <Button asChild className="btn-accent">
                 <Link to="/contact">Get a Quote</Link>
               </Button>
-
-              {/* Mobile Menu Button */}
-              <button
-                className="lg:hidden p-2 text-foreground"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                aria-label="Toggle menu"
-              >
-                {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-              </button>
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="lg:hidden p-2 text-foreground"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
           </nav>
 
           {/* Mobile Menu */}
@@ -164,20 +164,62 @@ const Header = () => {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
-                className="lg:hidden bg-background border-t border-border"
+                className="lg:hidden bg-background border-t border-border overflow-hidden"
               >
-                <div className="py-4 space-y-4">
+                <div className="py-4 space-y-2 max-h-[80vh] overflow-y-auto px-4">
                   {navLinks.map((link) => (
-                    <Link
-                      key={link.path}
-                      to={link.path}
-                      className={`block py-2 text-base font-medium ${location.pathname === link.path ? "text-accent" : "text-foreground"}`}
-                    >
-                      {link.name}
-                    </Link>
+                    <div key={link.path}>
+                      {link.children ? (
+                        <div className="space-y-2">
+                          <button
+                            onClick={() => setActiveDropdown(activeDropdown === link.name ? null : link.name)}
+                            className={`flex items-center justify-between w-full py-2 text-base font-medium ${location.pathname.startsWith(link.path) ? "text-accent" : "text-foreground"}`}
+                          >
+                            {link.name}
+                            <motion.span
+                              animate={{ rotate: activeDropdown === link.name ? 180 : 0 }}
+                              transition={{ duration: 0.2 }}
+                            >
+                              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 4L6 8L10 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                              </svg>
+                            </motion.span>
+                          </button>
+                          <AnimatePresence>
+                            {activeDropdown === link.name && (
+                              <motion.div
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="pl-4 border-l-2 border-border ml-2 space-y-2"
+                              >
+                                {link.children.map((child) => (
+                                  <Link
+                                    key={child.path}
+                                    to={child.path}
+                                    className="block py-2 text-sm text-muted-foreground hover:text-accent"
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                  >
+                                    {child.name}
+                                  </Link>
+                                ))}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      ) : (
+                        <Link
+                          to={link.path}
+                          className={`block py-2 text-base font-medium ${location.pathname === link.path ? "text-accent" : "text-foreground"}`}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {link.name}
+                        </Link>
+                      )}
+                    </div>
                   ))}
                   <Button asChild className="btn-accent w-full mt-4">
-                    <Link to="/contact">Get a Quote</Link>
+                    <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>Get a Quote</Link>
                   </Button>
                 </div>
               </motion.div>

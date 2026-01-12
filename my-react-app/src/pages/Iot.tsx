@@ -88,10 +88,10 @@ const Iot = () => {
               <motion.div
                 key={index}
                 whileHover={{ scale: 1.03 }}
-                className="flex bg-white rounded-2xl shadow-lg overflow-hidden"
+                className="flex flex-col sm:flex-row bg-white rounded-2xl shadow-lg overflow-hidden"
               >
                 {/* IMAGE */}
-                <div className="w-1/3">
+                <div className="w-full sm:w-1/3 h-48 sm:h-auto">
                   <img
                     src={card.img}
                     alt={card.title}
@@ -100,7 +100,7 @@ const Iot = () => {
                 </div>
 
                 {/* TEXT */}
-                <div className="w-2/3 p-6 flex flex-col justify-center">
+                <div className="w-full sm:w-2/3 p-6 flex flex-col justify-center">
                   <h3 className="text-xl font-semibold mb-3">
                     {card.title}
                   </h3>
