@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import saiicon from "../../assets/saiicon.png";
+import saiicon1 from "../../assets/saiicon1.png";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -75,7 +75,7 @@ const Header = () => {
             <Link to="/" className="flex items-center gap-3">
               <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center">
                 <img
-                  src={saiicon}
+                  src={saiicon1}
                   alt="Sai TechnoWork Logo"
                   className="w-12 h-12 object-contain"
                 />
