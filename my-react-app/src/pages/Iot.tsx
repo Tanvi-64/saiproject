@@ -34,7 +34,7 @@ const Iot = () => {
   return (
     <Layout>
       {/* HERO HEADER */}
-      <section className="relative py-24 md:py-32 min-h-[600px] flex items-center">
+      <section className="relative py-24 md:py-32 min-h-[600px] flex items-center shadow-xl">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${iotbg})` }}

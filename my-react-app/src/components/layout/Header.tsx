@@ -13,18 +13,24 @@ const navLinks = [
     path: "/services",
     children: [
       { name: "Design & Support", path: "/services/design" },
-      { name: "Engineering Services", path: "/services/engineering" }
+      { name: "Engineering Services", path: "/services/engineering" },
+      { name: "Supply Chain & Procurement Services", path: "/services/SupplyChain" },
+      { name: "Testing & Certification", path: "/services/Testing" },
+      { name: "Aftermarket & Post-Sales Services", path: "/services/Aftermarket" }
     ]
   },
   {
     name: "Industries",
     path: "/industries",
     children: [
-      { name: "Automotive", path: "/industries/automotive" },
-      { name: "IoT", path: "/industries/iot" }
+      { name: "Automative-EV", path: "/industries/automotive" },
+      { name: "IOT, Embedded & AI", path: "/industries/iot" },
+      { name: "Aerospace & Defence", path: "/industries/Aerospace" },
+      { name: "Healthcare & Medical", path: "/industries/Healthcare" },
+      { name: "Green Energy", path: "/industries/Green" }
     ]
   },
-  { name: "Sustainability", path: "/Sustainability" },
+  // { name: "Sustainability", path: "/Sustainability" },
   { name: "Contact", path: "/contact" },
 ];
 

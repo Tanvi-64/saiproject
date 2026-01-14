@@ -71,7 +71,7 @@ const Automative = () => {
     <Layout>
 
       {/* HERO SECTION */}
-      <section className="relative min-h-[600px] flex items-center">
+      <section className="relative min-h-[600px] flex items-center shadow-xl">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${autoimg1})` }}
