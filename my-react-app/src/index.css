@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Poppins', sans-serif;
+    @apply bg-background text-foreground;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .container-wide {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #ff6b35 0%, #ff5520 100%);
+  }
+
+  .card-industrial {
+    @apply bg-card rounded-lg border border-border transition-all duration-300;
+    box-shadow: 0 4px 20px -4px rgba(31, 41, 55, 0.12);
+  }
+
+  .card-industrial:hover {
+    box-shadow: 0 8px 30px -8px rgba(31, 41, 55, 0.15);
+    transform: translateY(-4px);
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-md font-medium text-accent-foreground transition-all duration-300;
+    background: linear-gradient(135deg, #ff6b35 0%, #ff5520 100%);
+    box-shadow: 0 4px 14px 0 rgba(255, 107, 53, 0.35);
+  }
+
+  .btn-accent:hover {
+    box-shadow: 0 6px 20px 0 rgba(255, 107, 53, 0.45);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline-light {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-md font-medium border-2 border-white/30 text-white transition-all duration-300;
+    background: transparent;
+  }
+
+  .btn-outline-light:hover {
+    @apply bg-white/10 border-white/50;
+  }
+
+  .hero-overlay {
+    background: linear-gradient(135deg, rgba(31, 41, 55, 0.92) 0%, rgba(31, 41, 55, 0.85) 100%);
+    @apply text-lg text-muted-foreground max-w-2xl;
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
