@@ -6,6 +6,16 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        '2xl': '1440px',
+        '3xl': '1600px',
+        '4xl': '1920px',
+      },
+      maxWidth: {
+        '8xl': '88rem',   // 1408px
+        '9xl': '96rem',   // 1536px
+        '10xl': '112rem', // 1792px
+      },
       colors: {
         border: "#e5e7eb",
         background: "#fafbfc",

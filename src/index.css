@@ -21,11 +21,17 @@
 
 @layer components {
   .container-wide {
-    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply w-full mx-auto px-4 sm:px-6 lg:px-12 xl:px-16;
+    max-width: 1400px;
+  }
+
+  .container-hero {
+    @apply w-full mx-auto px-4 sm:px-6 lg:px-12 xl:px-16;
+    max-width: 1600px;
   }
 
   .section-padding {
-    @apply py-16 md:py-24;
+    @apply py-10 md:py-16 lg:py-20;
   }
 
   .text-gradient {
@@ -65,7 +71,22 @@
 
   .hero-overlay {
     background: linear-gradient(135deg, rgba(31, 41, 55, 0.92) 0%, rgba(31, 41, 55, 0.85) 100%);
-    @apply text-lg text-muted-foreground max-w-2xl;
+  }
+
+  .section-title {
+    @apply text-xl sm:text-2xl md:text-3xl font-bold text-foreground leading-tight;
+  }
+
+  .section-subtitle {
+    @apply text-muted-foreground text-base leading-relaxed max-w-3xl;
+  }
+
+  .shadow-card {
+    box-shadow: 0 4px 20px -4px rgba(31, 41, 55, 0.12);
+  }
+
+  .shadow-elevated {
+    box-shadow: 0 10px 40px -8px rgba(31, 41, 55, 0.2);
   }
 }
 

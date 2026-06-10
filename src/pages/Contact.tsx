@@ -11,7 +11,7 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Phone",
-    details: ["07498136182"],
+    details: ["7498136182 – SHREYAS PATIL 9284293143 – ARCHANA PATIL"],
   },
   {
     icon: Mail,
@@ -21,7 +21,7 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Address",
-    details: ["Nandanvan city Abhinav College Road,opp.Chavan Viit Bhatti,Pune,Maharashtra 411041"],
+    details: ["11A+11B, Mainai Complex , Nanadanvan City , Abhinav College Rd, Near Chavan Viit Bhatti, Narhe– 411041, Pune , Maharashtra , INDIA"],
   },
   {
     icon: Clock,
@@ -73,7 +73,7 @@ const Contact = () => {
     <Layout>
       {/* Hero Section */}
       <section className="py-24 md:py-32 bg-primary text-primary-foreground">
-        <div className="container-wide">
+        <div className="container-hero">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -83,11 +83,11 @@ const Contact = () => {
             <span className="inline-block px-4 py-2 bg-accent/20 text-accent rounded-full text-sm font-medium mb-6">
               Get In Touch
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-6">
               Let's Discuss Your{" "}
               <span className="text-accent">Project</span>
             </h1>
-            <p className="text-lg md:text-xl text-primary-foreground/80 leading-relaxed">
+            <p className="text-base md:text-lg xl:text-xl text-primary-foreground/80 leading-relaxed">
               Ready to start your next project? Contact our team for a free consultation 
               and discover how we can help you achieve your goals.
             </p>
@@ -107,7 +107,7 @@ const Contact = () => {
               viewport={{ once: true }}
               className="lg:col-span-2"
             >
-              <div className="bg-card rounded-lg border border-border p-8 shadow-card">
+              <div className="bg-card rounded-lg border border-border p-5 sm:p-8 shadow-card">
                 <h2 className="text-2xl font-bold text-foreground mb-2">Send Us a Message</h2>
                 <p className="text-muted-foreground mb-8">
                   Fill out the form below and we'll get back to you within 24 hours.
@@ -233,7 +233,7 @@ const Contact = () => {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <div className="bg-primary text-primary-foreground rounded-lg p-8">
+              <div className="bg-primary text-primary-foreground rounded-lg p-5 sm:p-8">
                 <h3 className="text-xl font-bold mb-6">Contact Information</h3>
                 <div className="space-y-6">
                   {contactInfo.map((info) => (
@@ -254,7 +254,7 @@ const Contact = () => {
                 </div>
               </div>
 
-              <div className="bg-accent text-accent-foreground rounded-lg p-8">
+              <div className="bg-accent text-accent-foreground rounded-lg p-5 sm:p-8">
                 <h3 className="text-xl font-bold mb-3">Emergency Support</h3>
                 <p className="text-accent-foreground/80 text-sm mb-4">
                   For urgent technical support and emergency services, contact our 24/7 hotline.
@@ -273,7 +273,7 @@ const Contact = () => {
       </section>
 
       {/* Map Section */}
-      <section className="h-96 bg-secondary">
+      <section className="h-64 sm:h-96 bg-secondary">
   <iframe
     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.886769260776!2d73.8262893!3d18.429478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc295feabaa1395%3A0xdd4a54e813cd8daa!2sSai%20Techno%20Works!5e0!3m2!1sen!2sin!4v1704900000000"
     className="w-full h-full border-0"

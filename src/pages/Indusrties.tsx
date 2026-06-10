@@ -1,103 +1,111 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { 
-  Zap, 
-  Settings, 
-  Wrench, 
-  Shield, 
-  Cog,
-  Lightbulb,
+import {
+  Car,
+  Sun,
+  Radio,
+  Pill,
+  BatteryCharging,
+  Factory,
   ArrowRight,
-  CheckCircle
+  CheckCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/layout/Layout";
 
-const services = [
+interface Service {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  features: string[];
+}
+
+const services: Service[] = [
   {
-    icon: Zap,
-    title: "Automative & EV",
-    description: "Delivering high-reliability electronics and intelligent systems that drive the future of automotive and electric mobility—built for safety, performance, and scalability.",
+    icon: Car,
+    title: "Automotive Industry",
+    description:
+      "Providing robust PCB assembly solutions for automotive applications, focusing on durability, precision, and compliance with industry standards for reliable performance.",
     features: [
-    "Advanced Power Electronics",
-"Battery Management Systems (BMS)",
-"Motor Control & Drive Systems",
-"Charging & Energy Management",
-"Thermal & Efficiency Optimization",
+      "Automotive PCB Assembly",
+      "High Reliability Electronics",
+      "Industry Standard Compliance",
+      "Precision Manufacturing",
+      "Durable Electronic Systems",
     ],
   },
   {
-    icon: Settings,
-    title: "IOT,Embedded & AI",
-    description: "Delivering intelligent, connected, and scalable electronics solutions that power smart devices, real-time intelligence, and next-generation digital ecosystems.",
+    icon: Sun,
+    title: "Solar Industry",
+    description:
+      "Supporting the renewable energy sector with PCB assembly for solar inverters, controllers, and energy management systems, ensuring efficiency and long-term reliability.",
     features: [
-      "Embedded Controller Boards",
-"Edge AI Modules",
-"Smart IoT Gateways",
-"AI-Powered Vision Systems",
-"Connected & Intelligent Device Integration",
+      "Solar Inverter Assemblies",
+      "Energy Management Systems",
+      "Controller PCB Manufacturing",
+      "Renewable Energy Solutions",
+      "Long-Term Reliability",
     ],
   },
   {
-    icon: Wrench,
-    title: "Industrial Automation & Power Electronics",
-    description: "Professional installation and commissioning services ensuring optimal system performance.",
+    icon: Radio,
+    title: "Telecommunication Industry",
+    description:
+      "Delivering high-quality assemblies for communication systems and networking equipment, ensuring stable performance and signal reliability.",
     features: [
-      "Equipment installation & setup",
-      "System integration & testing",
-      "Performance optimization",
-      "Operator training programs",
-      "Documentation & handover",
-      "Compliance certification",
+      "Communication Systems",
+      "Networking Equipment",
+      "Signal Processing Boards",
+      "High-Speed Electronics",
+      "Reliable Connectivity Solutions",
     ],
   },
   {
-    icon: Shield,
-    title: "Aerospace & Defence",
-    description: "Comprehensive maintenance programs to maximize equipment uptime and longevity.",
+    icon: Pill,
+    title: "Pharmaceutical Industry",
+    description:
+      "Manufacturing electronic assemblies used in pharmaceutical equipment and devices, ensuring high accuracy, consistency, and adherence to quality requirements.",
     features: [
-      "Preventive maintenance schedules",
-      "Breakdown maintenance support",
-      "Annual maintenance contracts",
-      "Spare parts management",
-      "Performance monitoring",
-      "Emergency response services",
+      "Medical Equipment Electronics",
+      "Precision PCB Assembly",
+      "Quality Compliance",
+      "Reliable Device Manufacturing",
+      "Consistent Production Standards",
     ],
   },
   {
-    icon: Cog,
-    title: "Healthcare & Medical",
-    description: "Smart automation solutions to enhance productivity and operational efficiency.",
+    icon: BatteryCharging,
+    title: "Power Industry",
+    description:
+      "Supporting manufacturing of power control and conversion systems, ensuring high reliability and performance for applications such as power supplies, inverters, and industrial control systems.",
     features: [
-      "PLC programming & integration",
-      "SCADA system implementation",
-      "Motor control centers",
-      "Process automation",
-      "IoT & Industry 4.0 solutions",
-      "Robotics integration",
+      "Power Supply Electronics",
+      "Industrial Control Systems",
+      "Power Conversion Systems",
+      "Inverter Assemblies",
+      "High Reliability Manufacturing",
     ],
   },
   {
-    icon: Lightbulb,
-    title: "Railway & Transportation",
-    description: "Tailored engineering solutions designed to meet your unique operational challenges.",
+    icon:  Factory,
+    title: "Industrial Electronics",
+    description:
+      "Delivering dependable PCB assembly and electronic manufacturing solutions for industrial applications requiring performance, durability, and operational efficiency.",
     features: [
-      "Feasibility studies & consulting",
-      "Custom equipment design",
-      "Retrofit & upgrades",
-      "Turnkey project execution",
-      "Energy audits & optimization",
-      "Compliance consulting",
+      "Industrial Automation Electronics",
+      "Control System Assemblies",
+      "Process Monitoring Solutions",
+      "Custom Industrial PCBs",
+      "Reliable Manufacturing Support",
     ],
   },
 ];
-
 const Industries = () => {
   return (
     <Layout>
       {/* Hero Section */}
       <section className="py-24 md:py-32 bg-primary text-primary-foreground">
-        <div className="container-wide">
+        <div className="container-hero">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -107,12 +115,12 @@ const Industries = () => {
             <span className="inline-block px-4 py-2 bg-accent/20 text-accent rounded-full text-sm font-medium mb-6">
               Industries We Serve
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-             Powering Innovation{" "}
-              <span className="text-accent">Across Critical Industries</span>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-6">
+              Serving Diverse Industries{" "}
+              <span className="text-accent">with Reliable Electronics Manufacturing</span>
             </h1>
-            <p className="text-lg md:text-xl text-primary-foreground/80 leading-relaxed">
-              With deep domain expertise and end-to-end EMS capabilities, Sai Technoworks supports diverse industries—delivering high-performance, compliant, and future-ready electronic solutions from concept to mass production.
+            <p className="text-base md:text-lg xl:text-xl text-primary-foreground/80 leading-relaxed">
+            Sai Technoworks supports a wide range of industries through high-quality PCB assembly and electronics manufacturing services. Our expertise enables us to deliver reliable, precision-engineered solutions for automotive, solar, telecommunication, pharmaceutical, power, and industrial applications.
             </p>
           </motion.div>
         </div>
@@ -134,9 +142,14 @@ const Industries = () => {
                 <div className="p-6 border-b border-border bg-secondary/50">
                   <div className="flex items-center gap-4">
                     <div className="w-14 h-14 bg-accent/10 rounded-lg flex items-center justify-center group-hover:bg-accent transition-colors">
-                      <service.icon className="text-accent group-hover:text-accent-foreground transition-colors" size={28} />
+                      <service.icon
+                        className="text-accent group-hover:text-accent-foreground transition-colors"
+                        size={28}
+                      />
                     </div>
-                    <h3 className="text-xl font-semibold text-foreground">{service.title}</h3>
+                    <h3 className="text-xl font-semibold text-foreground">
+                      {service.title}
+                    </h3>
                   </div>
                 </div>
                 <div className="p-6">
@@ -146,7 +159,10 @@ const Industries = () => {
                   <ul className="space-y-3">
                     {service.features.map((feature) => (
                       <li key={feature} className="flex items-start gap-3 text-sm">
-                        <CheckCircle className="text-accent shrink-0 mt-0.5" size={16} />
+                        <CheckCircle
+                          className="text-accent shrink-0 mt-0.5"
+                          size={16}
+                        />
                         <span className="text-foreground">{feature}</span>
                       </li>
                     ))}
@@ -158,8 +174,6 @@ const Industries = () => {
         </div>
       </section>
 
- 
-
       {/* CTA Section */}
       <section className="py-20 bg-accent">
         <div className="container-wide text-center">
@@ -167,10 +181,14 @@ const Industries = () => {
             Need a Custom Solution?
           </h2>
           <p className="text-accent-foreground/80 text-lg mb-8 max-w-2xl mx-auto">
-            Our expert engineers are ready to discuss your specific requirements 
+            Our expert engineers are ready to discuss your specific requirements
             and provide tailored solutions for your industrial needs.
           </p>
-          <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 px-8">
+          <Button
+            asChild
+            size="lg"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 px-8"
+          >
             <Link to="/contact">
               Get Started Today
               <ArrowRight className="ml-2" size={18} />
