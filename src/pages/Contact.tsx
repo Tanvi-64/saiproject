@@ -1,4 +1,5 @@
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -6,6 +7,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import Layout from "@/components/layout/Layout";
+
+const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
 
 const contactInfo = [
   {
@@ -31,7 +37,7 @@ const contactInfo = [
 ];
 
 const Contact = () => {
-  const { toast } = useToast();
+  const { toast, toasts } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -47,17 +53,30 @@ const Contact = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
+  e.preventDefault();
+  setIsSubmitting(true);
+
+  try {
+    await emailjs.send(
+      serviceId,
+      templateId,
+      {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        subject: formData.subject,
+        message: formData.message,
+      },
+      publicKey
+    );
+
     toast({
-      message: "Message Sent! Thank you for contacting us. We'll get back to you within 24 hours.",
+      message:
+        "Message Sent! Thank you for contacting us. We'll get back to you soon.",
       type: "success",
     });
-    
+
     setFormData({
       name: "",
       email: "",
@@ -66,8 +85,17 @@ const Contact = () => {
       subject: "",
       message: "",
     });
-    setIsSubmitting(false);
-  };
+  } catch (error) {
+    console.error(error);
+
+    toast({
+      message: "Failed to send message. Please try again.",
+      type: "error",
+    });
+  }
+
+  setIsSubmitting(false);
+};
 
   return (
     <Layout>
@@ -274,16 +302,32 @@ const Contact = () => {
 
       {/* Map Section */}
       <section className="h-64 sm:h-96 bg-secondary">
-  <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.886769260776!2d73.8262893!3d18.429478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc295feabaa1395%3A0xdd4a54e813cd8daa!2sSai%20Techno%20Works!5e0!3m2!1sen!2sin!4v1704900000000"
-    className="w-full h-full border-0"
-    allowFullScreen
-    loading="lazy"
-    referrerPolicy="no-referrer-when-downgrade"
-    title="Sai Techno Works Location"
-  />
-</section>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.886769260776!2d73.8262893!3d18.429478!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc295feabaa1395%3A0xdd4a54e813cd8daa!2sSai%20Techno%20Works!5e0!3m2!1sen!2sin!4v1704900000000"
+          className="w-full h-full border-0"
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          title="Sai Techno Works Location"
+        />
+      </section>
 
+      {/* Toast Notifications */}
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none">
+        {toasts.map((t) => (
+          <div
+            key={t.id}
+            className={`pointer-events-auto flex items-start gap-3 px-5 py-4 rounded-lg shadow-elevated text-white text-sm font-medium max-w-sm animate-fade-up ${
+              t.type === "error" ? "bg-red-600" : "bg-gray-900"
+            }`}
+          >
+            <span className="text-lg leading-none">
+              {t.type === "success" ? "✓" : t.type === "error" ? "✕" : "ℹ"}
+            </span>
+            <span>{t.message}</span>
+          </div>
+        ))}
+      </div>
     </Layout>
   );
 };

@@ -137,28 +137,28 @@ const Index = () => {
         <div className="absolute top-20 right-4 md:right-20 w-32 md:w-64 h-32 md:h-64 bg-accent/10 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 md:right-40 w-24 md:w-48 h-24 md:h-48 bg-accent/5 rounded-full blur-2xl" />
 
-        <div className="container-hero relative z-10">
+        <div className="container-hero relative z-10 w-full">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9 }}
-            className="max-w-3xl"
+            className="w-full max-w-3xl"
           >
             <motion.span
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="inline-block px-4 py-2 bg-accent/20 border border-accent/30 text-accent rounded-full text-sm font-medium mb-6"
+              className="inline-block px-3 py-1.5 bg-accent/20 border border-accent/30 text-accent rounded-full text-xs sm:text-sm font-medium mb-5"
             >
               Electronics Manufacturing Services (EMS)
             </motion.span>
 
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-5">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
               Precision PCB Assembly &{" "}
               <span className="text-accent">EMS Solutions</span>
             </h1>
 
-            <p className="text-base md:text-lg text-white/80 mb-8 leading-relaxed max-w-2xl">
+            <p className="text-sm sm:text-base md:text-lg text-white/80 mb-7 leading-relaxed max-w-xl">
               High-precision SMT, THT &amp; Box Build Assembly with advanced automated inspection systems and an unwavering commitment to zero-defect production.
             </p>
 
@@ -244,9 +244,9 @@ const Index = () => {
                   <div className="text-2xl font-bold text-primary mb-1">3 SMT Lines</div>
                   <p className="text-sm text-muted-foreground">Advanced automated production</p>
                 </div>
-                <div className="bg-primary text-primary-foreground rounded-xl p-6">
+                <div className="bg-accent text-white rounded-xl p-6">
                   <div className="text-2xl font-bold mb-1">15,000 Sq.Ft</div>
-                  <p className="text-sm text-primary-foreground/70">Manufacturing Facility</p>
+                  <p className="text-sm text-white/70">Manufacturing Facility</p>
                 </div>
               </div>
               <div className="space-y-4 pt-0 md:pt-8">

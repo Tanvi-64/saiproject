@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Linkedin, Facebook, Instagram } from "lucide-react";
-import saiicon1 from "../../assets/saiicon1.png";
+import sailogo from "../../assets/sailogo3.png";
 
 const Footer = () => {
   return (
@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="space-y-5">
             <Link to="/" className="flex items-center gap-3">
               <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-                <img src={saiicon1} alt="Sai Techno Works" className="w-8 h-8 object-contain" />
+                <img src={sailogo} alt="Sai Techno Works" className="w-8 h-8 object-contain" />
               </div>
               <div className="flex flex-col">
                 <span className="text-lg font-bold leading-tight">Sai Techno Works</span>
@@ -22,12 +22,12 @@ const Footer = () => {
               Precision PCB Assembly &; End-to-End Electronics Manufacturing Services. Delivering reliability, quality, and innovation to industries worldwide.
             </p>
             <div className="flex gap-3">
-              <a href="#" aria-label="LinkedIn" className="w-9 h-9 bg-primary-foreground/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+              <a href="https://www.linkedin.com/company/sai-techno-works/" aria-label="LinkedIn" className="w-9 h-9 bg-primary-foreground/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors">
                 <Linkedin size={16} />
               </a>
-              <a href="#" aria-label="Facebook" className="w-9 h-9 bg-primary-foreground/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors">
+              {/* <a href="#" aria-label="Facebook" className="w-9 h-9 bg-primary-foreground/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors">
                 <Facebook size={16} />
-              </a>
+              </a> */}
               <a href="https://www.instagram.com/saitechnoworks?igsh=eHh1YXVrcjgzNWdp" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-9 h-9 bg-primary-foreground/10 rounded-full flex items-center justify-center hover:bg-accent transition-colors">
                 <Instagram size={16} />
               </a>
