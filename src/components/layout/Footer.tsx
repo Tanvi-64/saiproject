@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Phone, Mail, MapPin, Linkedin, Facebook, Instagram } from "lucide-react";
+import { Phone, Mail, MapPin, Linkedin, Instagram } from "lucide-react";
 import sailogo from "../../assets/sailogo3.png";
 
 const Footer = () => {

@@ -159,7 +159,7 @@ const Index = () => {
             </h1>
 
             <p className="text-sm sm:text-base md:text-lg text-white/80 mb-7 leading-relaxed max-w-xl">
-              High-precision SMT, THT &amp; Box Build Assembly with advanced automated inspection systems and an unwavering commitment to zero-defect production.
+              High-precision SMT, THT &; Box Build Assembly with advanced automated inspection systems and an unwavering commitment to zero-defect production.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">

@@ -239,12 +239,12 @@ const About = () => {
               {
                 name: "Archana Patil",
                 role: "Founder & Director",
-                desc: "A visionary leader with deep expertise in electronics manufacturing, Archana Patil founded Sai Techno Works with a mission to deliver world-class EMS solutions. She drives strategic direction, operational excellence, and a culture of quality and innovation across the organization.",
+                desc: "Founder of Sai Technoworks, is an Electronics & Telecommunication Engineer with extensive experience in electronics manufacturing. Her vision, technical expertise, and commitment to quality have established the company as a reliable EMS partner, delivering innovative solutions with a strong focus on customer satisfaction and operational excellence.",
               },
               {
                 name: "Shreyas Patil",
                 role: "Business Development Manager",
-                desc: "Shreyas Patil leads the business development function, driving client acquisition, strategic partnerships, and market expansion. With a strong understanding of the EMS landscape, he builds lasting relationships that fuel sustainable growth for Sai Techno Works.",
+                desc: "Manager – Business Development at Sai Technoworks, leading initiatives to expand the company’s market presence and strengthen client relationships. He focuses on identifying new business opportunities, understanding customer requirements, and delivering tailored EMS solutions. His commitment to customer satisfaction, strategic growth, and long-term partnerships helps drive successful project execution and business expansion.",
               },
             ].map((member, index) => (
               <motion.div
