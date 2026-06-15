@@ -12,30 +12,30 @@ export default {
         '4xl': '1920px',
       },
       maxWidth: {
-        '8xl': '88rem',   // 1408px
-        '9xl': '96rem',   // 1536px
-        '10xl': '112rem', // 1792px
+        '8xl': '88rem',
+        '9xl': '96rem',
+        '10xl': '112rem',
       },
       colors: {
-        border: "#e5e7eb",
-        background: "#fafbfc",
-        foreground: "#1f2937",
-        card: "#ffffff",
+        border: "#e2e8f0",          // cool grey border
+        background: "#ffffff",       // pure white
+        foreground: "#0f172a",       // deep navy text
+        card: "#ffffff",             // white cards
         primary: {
-          DEFAULT: "#1f2937",
+          DEFAULT: "#255899ff",        // deep navy (headers, footer, dark sections)
           foreground: "#ffffff",
         },
         secondary: {
-          DEFAULT: "#f3f4f6",
-          foreground: "#1f2937",
+          DEFAULT: "#f1f5f9",        // faint cool grey (alternating sections)
+          foreground: "#0f172a",
         },
         accent: {
-          DEFAULT: "#0189C5",
+          DEFAULT: "#0189C5",        // logo sky blue
           foreground: "#ffffff",
         },
         muted: {
-          DEFAULT: "#f0f1f3",
-          foreground: "#6b7280",
+          DEFAULT: "#f8fafc",        // lightest grey
+          foreground: "#64748b",     // slate grey text
         },
         destructive: "#ef4444",
       },

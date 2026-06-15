@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import {
   Cpu,
@@ -20,7 +20,13 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/layout/Layout";
-import heroImage from "@/assets/home-hero.jpeg";
+import heroBg3 from "@/assets/saiherobg3.png";
+import heroBg4 from "@/assets/saiherobg4.png";
+import heroBg5 from "@/assets/saiherobg5.png";
+import heroBg6 from "@/assets/saiherobg6.png";
+import heroBg7 from "@/assets/saiherobg7.png";
+
+const heroBgs = [heroBg3, heroBg4, heroBg5, heroBg6, heroBg7];
 
 // Animated counter hook
 function useCounter(end: number, duration = 2000, start = false) {
@@ -123,15 +129,50 @@ const fadeUp = {
 };
 
 const Index = () => {
+  const [bgIndex, setBgIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setBgIndex((prev) => (prev + 1) % heroBgs.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <Layout>
       {/* Hero Section */}
       <section className="relative min-h-[78vh] flex items-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        />
+
+        {/* Crossfade background slider */}
+        <AnimatePresence>
+          <motion.div
+            key={bgIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
+            style={{ backgroundImage: `url(${heroBgs[bgIndex]})` }}
+          />
+        </AnimatePresence>
+
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/65 to-black/40" />
+
+        {/* Dot indicators */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+          {heroBgs.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setBgIndex(i)}
+              aria-label={`Slide ${i + 1}`}
+              className={`transition-all duration-300 rounded-full ${
+                i === bgIndex
+                  ? "w-6 h-2 bg-accent"
+                  : "w-2 h-2 bg-white/40 hover:bg-white/70"
+              }`}
+            />
+          ))}
+        </div>
 
         {/* Floating accent elements */}
         <div className="absolute top-20 right-4 md:right-20 w-32 md:w-64 h-32 md:h-64 bg-accent/10 rounded-full blur-3xl" />
@@ -179,16 +220,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Stats Row */}
-      <section className="py-8 bg-secondary">
-        <div className="container-wide">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-            {stats.map((stat, i) => (
-              <StatCard key={stat.label} stat={stat} index={i} />
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* About Preview */}
       <section className="section-padding">
@@ -236,30 +267,38 @@ const Index = () => {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="grid grid-cols-2 gap-4 mt-8 lg:mt-0"
+              className="flex flex-col gap-4 mt-8 lg:mt-0"
             >
-              <div className="space-y-4">
-                <div className="bg-card rounded-xl p-6 shadow-card border border-border">
-                  <Cpu className="text-accent mb-3" size={30} />
-                  <div className="text-2xl font-bold text-primary mb-1">3 SMT Lines</div>
-                  <p className="text-sm text-muted-foreground">Advanced automated production</p>
-                </div>
-                <div className="bg-accent text-white rounded-xl p-6">
-                  <div className="text-2xl font-bold mb-1">15,000 Sq.Ft</div>
-                  <p className="text-sm text-white/70">Manufacturing Facility</p>
-                </div>
-              </div>
-              <div className="space-y-4 pt-0 md:pt-8">
-                <div className="bg-accent text-white rounded-xl p-6">
-                  <div className="text-2xl font-bold mb-1">AOI + SPI</div>
-                  <p className="text-sm text-white/80">Inspection Systems</p>
-                </div>
-                <div className="bg-card rounded-xl p-6 shadow-card border border-border">
-                  <CircuitBoard className="text-accent mb-3" size={30} />
-                  <div className="text-2xl font-bold text-primary mb-1">2 THT Lines</div>
-                  <p className="text-sm text-muted-foreground">Manual insertion lines</p>
-                </div>
-              </div>
+              {[
+                { icon: Cpu,          value: "3 SMT Lines",    sub: "Advanced automated production", accent: false },
+                { icon: null,         value: "15,000 Sq.Ft",   sub: "Manufacturing Facility",        accent: true  },
+                { icon: CircuitBoard, value: "2 THT Lines",    sub: "Manual insertion lines",        accent: false },
+              ].map((card, i) => (
+                <motion.div
+                  key={card.value}
+                  initial={{ opacity: 0, x: 60 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: i * 0.15, ease: "easeOut" }}
+                  viewport={{ once: true }}
+                  whileHover={{ x: 8, scale: 1.02 }}
+                  className={`flex items-center gap-5 rounded-xl px-6 py-5 cursor-default transition-shadow duration-300 hover:shadow-elevated ${
+                    card.accent
+                      ? "bg-accent text-white"
+                      : "bg-card border border-border shadow-card"
+                  }`}
+                >
+                  <div className={`w-1 self-stretch rounded-full shrink-0 ${card.accent ? "bg-white/40" : "bg-accent"}`} />
+                  {card.icon ? (
+                    <card.icon className={card.accent ? "text-white shrink-0" : "text-accent shrink-0"} size={28} />
+                  ) : (
+                    <div className={`text-3xl font-black shrink-0 leading-none ${card.accent ? "text-white/30" : "text-accent/20"}`}>◈</div>
+                  )}
+                  <div>
+                    <div className={`text-xl font-bold leading-tight ${card.accent ? "text-white" : "text-primary"}`}>{card.value}</div>
+                    <p className={`text-sm mt-0.5 ${card.accent ? "text-white/75" : "text-muted-foreground"}`}>{card.sub}</p>
+                  </div>
+                </motion.div>
+              ))}
             </motion.div>
           </div>
         </div>
@@ -306,7 +345,7 @@ const Index = () => {
           </div>
 
           <div className="text-center mt-10">
-            <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+            <Button asChild variant="outline" className="border-accent text-accent hover:bg-accent hover:text-white">
               <Link to="/services">
                 View All Services
                 <ArrowRight className="ml-2" size={18} />
@@ -317,13 +356,17 @@ const Index = () => {
       </section>
 
       {/* Manufacturing Excellence */}
-      <section className="section-padding bg-primary text-primary-foreground relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-accent rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent rounded-full blur-3xl translate-x-1/2 translate-y-1/2" />
+      <section className="section-padding bg-white relative overflow-hidden">
+        {/* Subtle background decoration */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary rounded-full blur-3xl -translate-x-1/3 translate-y-1/3" />
         </div>
+
         <div className="container-wide relative z-10">
           <div className="grid lg:grid-cols-2 gap-10 items-center">
+
+            {/* Left — text content */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -333,22 +376,24 @@ const Index = () => {
               <span className="text-accent text-sm uppercase tracking-widest font-bold block mb-3">
                 Manufacturing Excellence
               </span>
-              <h2 className="text-2xl md:text-3xl font-bold mb-5 leading-tight">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-5 leading-tight">
                 Advanced Capabilities for Precision Manufacturing
               </h2>
-              <p className="text-primary-foreground/80 leading-relaxed mb-6">
+              <p className="text-muted-foreground leading-relaxed mb-6">
                 Our 15,000 Sq.Ft facility is equipped with state-of-the-art SMT lines, high-speed pick &amp; place machines, and fully automated inspection systems — built for high-volume, high-precision electronic manufacturing.
               </p>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-3">
                 {[
                   { label: "High-Speed Pick & Place", icon: Cpu },
                   { label: "Reflow Oven Systems", icon: Factory },
                   { label: "AOI Inspection", icon: ShieldCheck },
                   { label: "SPI Inspection", icon: ShieldCheck },
                 ].map(({ label, icon: Icon }) => (
-                  <div key={label} className="flex items-center gap-3 bg-primary-foreground/5 rounded-lg p-3">
-                    <Icon className="text-accent shrink-0" size={18} />
-                    <span className="text-sm text-primary-foreground/90">{label}</span>
+                  <div key={label} className="flex items-center gap-3 bg-secondary border border-border rounded-lg p-3 hover:border-accent/30 transition-colors duration-200">
+                    <div className="w-8 h-8 bg-accent/10 rounded-md flex items-center justify-center shrink-0">
+                      <Icon className="text-accent" size={16} />
+                    </div>
+                    <span className="text-sm text-foreground font-medium">{label}</span>
                   </div>
                 ))}
               </div>
@@ -360,6 +405,7 @@ const Index = () => {
               </Button>
             </motion.div>
 
+            {/* Right — stat cards */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -373,17 +419,26 @@ const Index = () => {
                 { value: "AOI", label: "Automated Optical Inspection", accent: false },
                 { value: "SPI", label: "Solder Paste Inspection", accent: true },
               ].map((item) => (
-                <div
+                <motion.div
                   key={item.label}
-                  className={`rounded-xl p-6 text-center ${
-                    item.accent ? "bg-accent text-white" : "bg-primary-foreground/10 text-primary-foreground"
+                  whileHover={{ y: -4 }}
+                  transition={{ duration: 0.2 }}
+                  className={`rounded-xl p-6 text-center border transition-shadow duration-300 hover:shadow-elevated ${
+                    item.accent
+                      ? "bg-primary border-primary text-white"
+                      : "bg-secondary border-border text-foreground"
                   }`}
                 >
-                  <div className="text-3xl font-bold mb-2">{item.value}</div>
-                  <div className="text-sm opacity-80">{item.label}</div>
-                </div>
+                  <div className={`text-3xl font-bold mb-2 ${item.accent ? "text-accent" : "text-primary"}`}>
+                    {item.value}
+                  </div>
+                  <div className={`text-sm leading-snug ${item.accent ? "text-white/75" : "text-muted-foreground"}`}>
+                    {item.label}
+                  </div>
+                </motion.div>
               ))}
             </motion.div>
+
           </div>
         </div>
       </section>
@@ -419,7 +474,7 @@ const Index = () => {
             ))}
           </div>
           <div className="text-center mt-10">
-            <Button asChild variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+            <Button asChild variant="outline" className="border-accent text-accent hover:bg-accent hover:text-white">
               <Link to="/industries">
                 Explore Industries
                 <ArrowRight className="ml-2" size={18} />
@@ -473,6 +528,17 @@ const Index = () => {
         </div>
       </section>
 
+          {/* Stats Row */}
+      <section className="py-8 bg-secondary">
+        <div className="container-wide">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            {stats.map((stat, i) => (
+              <StatCard key={stat.label} stat={stat} index={i} />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Contact CTA */}
       <section className="py-14 bg-accent relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
@@ -493,7 +559,7 @@ const Index = () => {
               Get in touch with our team to discuss your PCB assembly and electronics manufacturing requirements.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 px-8">
+              <Button asChild size="lg" className="bg-primary text-white hover:bg-accent/90 px-8">
                 <Link to="/contact">
                   Get a Quote
                   <ArrowRight className="ml-2" size={18} />

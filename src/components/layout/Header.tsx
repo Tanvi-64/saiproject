@@ -36,7 +36,7 @@ const Header = () => {
       {/* Fixed wrapper — top bar + nav together, no gap */}
       <div className="fixed top-0 left-0 right-0 z-50">
         {/* Top Bar */}
-        <div className="bg-primary text-primary-foreground py-1.5 hidden md:block">
+        <div className="bg-gray-800 text-primary-foreground py-1.5 hidden md:block">
           <div className="container-wide flex justify-between items-center text-xs">
             <div className="flex items-center gap-6">
               <a href="tel:07498136182" className="flex items-center gap-2 hover:text-accent transition-colors">
@@ -68,7 +68,26 @@ const Header = () => {
                   <img src={sailogo} alt="Sai Techno Works" className="w-9 h-9 object-contain" />
                 </div>
                 <div className="flex flex-col min-w-0">
-                  <span className="text-base sm:text-lg font-bold text-primary leading-tight truncate">Sai Techno Works</span>
+                  <span className="flex items-center text-base sm:text-lg font-bold leading-tight overflow-hidden">
+                    {"Sai Techno Works".split("").map((char, i) => (
+                      <motion.span
+                        key={i}
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: 0.05 * i, ease: "easeOut" }}
+                        whileHover={{ y: -2, transition: { duration: 0.15 } }}
+                        style={{
+                          background: `linear-gradient(135deg, #0189C5 0%, #2B3EA1 100%)`,
+                          WebkitBackgroundClip: "text",
+                          WebkitTextFillColor: "transparent",
+                          display: "inline-block",
+                          whiteSpace: char === " " ? "pre" : "normal",
+                        }}
+                      >
+                        {char}
+                      </motion.span>
+                    ))}
+                  </span>
                   <span className="text-[8px] sm:text-[9px] text-muted-foreground tracking-wider uppercase truncate">Electronics Manufacturing Services</span>
                 </div>
               </Link>

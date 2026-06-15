@@ -127,7 +127,7 @@ const About = () => {
                   Our Journey
                 </h3>
                 <div className="space-y-6 relative">
-                  <div className="absolute left-5 top-2 bottom-2 w-0.5 bg-primary-foreground/15" />
+                  <div className="absolute left-5 top-2 bottom-2 w-0.5 bg-white/15" />
                   {journey.map((item, index) => (
                     <motion.div
                       key={item.year}
@@ -142,7 +142,7 @@ const About = () => {
                       </div>
                       <div className="pt-1.5">
                         <span className="text-accent font-bold text-sm">{item.year}</span>
-                        <p className="text-primary-foreground/80 text-sm mt-1 leading-relaxed">{item.event}</p>
+                        <p className="text-white/80 text-sm mt-1 leading-relaxed">{item.event}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -272,7 +272,7 @@ const About = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-14 bg-primary text-primary-foreground">
+      <section className="py-14 bg-accent text-white">
         <div className="container-wide text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -281,7 +281,7 @@ const About = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-2xl md:text-3xl font-bold mb-4">Partner with Sai Techno Works</h2>
-            <p className="text-primary-foreground/80 text-base mb-6 max-w-xl mx-auto">
+            <p className="text-white/80 text-base mb-6 max-w-xl mx-auto">
               Ready to experience precision EMS manufacturing? Let's discuss your requirements.
             </p>
             <Button asChild className="btn-accent px-6 py-4 text-sm">

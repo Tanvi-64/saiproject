@@ -124,6 +124,7 @@ const capabilities = [
       "Customer-supplied test procedures",
       "Test result documentation",
     ],
+    future: true,
   },
   {
     icon: Shield,
@@ -280,38 +281,80 @@ const Capabilities = () => {
             ))}
           </div>
 
-          {/* 3 lines callout */}
-          <div className="grid md:grid-cols-3 gap-6">
-            {["SMT Line 1", "SMT Line 2", "SMT Line 3"].map((line, i) => (
-              <motion.div
-                key={line}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                className="bg-primary text-primary-foreground rounded-lg p-6"
-              >
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-accent rounded-lg flex items-center justify-center">
-                    <Cpu className="text-white" size={20} />
-                  </div>
-                  <h3 className="text-lg font-semibold">{line}</h3>
+          {/* 3 lines — single unified card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="relative bg-primary rounded-2xl overflow-hidden shadow-elevated"
+          >
+            {/* top accent strip */}
+            <div className="h-1 w-full bg-gradient-to-r from-accent via-accent/60 to-transparent" />
+
+            <div className="p-8 sm:p-10">
+              {/* Header */}
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8">
+                <div className="w-14 h-14 bg-accent rounded-xl flex items-center justify-center shrink-0">
+                  <Cpu className="text-white" size={28} />
                 </div>
-                <p className="text-primary-foreground/75 text-sm leading-relaxed mb-4">
-                  Fully equipped with stencil printer, high-speed pick & place, reflow oven, and
-                  inline AOI — capable of running independently for maximum flexibility.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {["Stencil Print", "Pick & Place", "Reflow", "AOI"].map((tag) => (
-                    <span key={tag} className="text-xs px-2 py-1 bg-accent/20 text-accent rounded-md">
-                      {tag}
-                    </span>
-                  ))}
+                <div>
+                  <h3 className="text-xl font-bold text-white">3 Independent SMT Production Lines</h3>
+                  <p className="text-white/60 text-sm mt-0.5">Each line fully equipped and independently operable for maximum throughput flexibility</p>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+
+              {/* Divider */}
+              <div className="border-t border-white/10 mb-8" />
+
+              {/* All 3 lines in a single flat layout */}
+              <div className="grid sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-primary-foreground/10">
+                {[
+                  { name: "SMT Line 1", machines: ["Yamaha YVP XG Paste Printer", "SAKI 2025 SPI", "Yamaha YG200 Pick & Place", "Jaguar F8 – 10 Zone Reflow", "SAKI 2025 AOI"] },
+                  { name: "SMT Line 2", machines: ["Yamaha YCP 10 Paste Printer", "Topaz X2 Pick & Place", "RF-350-LS – 6 Zone Reflow", "AOI Machine"] },
+                  { name: "SMT Line 3", machines: ["Semi-Auto Paste Printer", "Topaz X2 Pick & Place", "EPS – 5 Zone Reflow", "SPI (Dec 2026)", "AOI (Dec 2026)"] },
+                ].map((line, i) => (
+                  <motion.div
+                    key={line.name}
+                    initial={{ opacity: 0, y: 16 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 0.15 + i * 0.1 }}
+                    viewport={{ once: true }}
+                    className="px-0 sm:px-7 py-4 sm:py-0 first:pl-0 last:pr-0"
+                  >
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="w-2 h-2 rounded-full bg-accent" />
+                      <span className="text-white font-semibold text-sm">{line.name}</span>
+                    </div>
+                    <ul className="space-y-2.5">
+                      {line.machines.map((m) => (
+                        <li key={m} className="flex items-start gap-2 text-xs text-white/65">
+                          <ChevronRight className="text-accent shrink-0 mt-0.5" size={12} />
+                          {m}
+                        </li>
+                      ))}
+                    </ul>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* shared tags */}
+              <div className="mt-8 pt-6 border-t border-white/10 flex flex-wrap gap-2">
+                {["Stencil Print", "Pick & Place", "Reflow Soldering", "AOI Inspection", "SPI Verification"].map((tag, i) => (
+                  <motion.span
+                    key={tag}
+                    initial={{ opacity: 0, scale: 0.85 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: 0.4 + i * 0.06 }}
+                    viewport={{ once: true }}
+                    className="text-xs px-3 py-1.5 bg-accent/15 text-accent border border-accent/20 rounded-full font-medium"
+                  >
+                    {tag}
+                  </motion.span>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -327,7 +370,7 @@ const Capabilities = () => {
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-            {capabilities.map((cap, i) => (
+            {capabilities.filter(c => !c.future).map((cap, i) => (
               <motion.div
                 key={cap.title}
                 custom={i}
@@ -362,8 +405,117 @@ const Capabilities = () => {
         </div>
       </section>
 
-      {/* 3-Stage Quality Assurance */}
-      <section className="section-padding">
+      {/* Future Capabilities */}
+      <section className="section-padding relative overflow-hidden">
+        {/* background grid pattern */}
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          style={{ backgroundImage: "radial-gradient(circle, #0189C5 1px, transparent 1px)", backgroundSize: "32px 32px" }} />
+
+        <div className="container-wide relative z-10">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center max-w-2xl mx-auto mb-14"
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-semibold uppercase tracking-widest mb-4">
+              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+              Coming Soon
+            </span>
+            <h2 className="section-title mt-2">Future Capabilities</h2>
+            <p className="section-subtitle mx-auto mt-3">
+              Capabilities currently in development — expanding our testing and validation offering to deliver end-to-end production confidence.
+            </p>
+          </motion.div>
+
+          {/* Single featured card — Functional Testing */}
+          {capabilities.filter(c => c.future).map((cap) => (
+            <motion.div
+              key={cap.title}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              viewport={{ once: true }}
+              className="relative max-w-3xl mx-auto"
+            >
+              {/* glow ring */}
+              <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-accent/40 via-accent/10 to-transparent blur-sm pointer-events-none" />
+
+              <div className="relative bg-card border border-accent/20 rounded-2xl overflow-hidden shadow-elevated">
+                {/* top accent strip */}
+                <div className="h-1 w-full bg-gradient-to-r from-accent via-accent/60 to-transparent" />
+
+                <div className="p-8 sm:p-10 flex flex-col sm:flex-row gap-8 items-start">
+                  {/* Icon block */}
+                  <motion.div
+                    initial={{ scale: 0.7, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                    viewport={{ once: true }}
+                    className="shrink-0"
+                  >
+                    <div className="w-20 h-20 bg-accent/10 rounded-2xl flex items-center justify-center border border-accent/20">
+                      <cap.icon className="text-accent" size={36} />
+                    </div>
+                    <div className="mt-3 text-center">
+                      <div className="text-2xl font-black text-accent">{cap.stat}</div>
+                      <div className="text-xs text-muted-foreground font-medium">{cap.statLabel}</div>
+                    </div>
+                  </motion.div>
+
+                  {/* Content */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-3 mb-3">
+                      <h3 className="text-xl font-bold text-foreground">{cap.title}</h3>
+                      <span className="text-xs px-2.5 py-1 rounded-full bg-accent/10 text-accent font-semibold border border-accent/20">
+                        In Development
+                      </span>
+                    </div>
+                    <p className="text-muted-foreground text-sm leading-relaxed mb-6">{cap.description}</p>
+
+                    <div className="grid sm:grid-cols-2 gap-x-6 gap-y-3">
+                      {cap.details.map((d, di) => (
+                        <motion.div
+                          key={d}
+                          initial={{ opacity: 0, x: -16 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.4, delay: 0.3 + di * 0.08 }}
+                          viewport={{ once: true }}
+                          className="flex items-start gap-2.5 text-sm"
+                        >
+                          <div className="w-5 h-5 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center shrink-0 mt-0.5">
+                            <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+                          </div>
+                          <span className="text-foreground">{d}</span>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* bottom bar */}
+                <div className="px-8 sm:px-10 py-4 bg-secondary/60 border-t border-border flex items-center gap-3">
+                  <div className="flex gap-1">
+                    {[0,1,2].map(d => (
+                      <motion.div
+                        key={d}
+                        className="w-2 h-2 rounded-full bg-accent"
+                        animate={{ opacity: [0.3, 1, 0.3] }}
+                        transition={{ duration: 1.2, delay: d * 0.2, repeat: Infinity }}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-xs text-muted-foreground font-medium">Capability expansion in progress — available soon</span>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* 3-Stage Quality Assurance */}      <section className="section-padding">
         <div className="container-wide">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="text-accent text-sm uppercase tracking-wider font-semibold">Quality System</span>
@@ -443,7 +595,7 @@ const Capabilities = () => {
       </section>
 
       {/* Workforce + Stats */}
-      <section className="section-padding bg-primary text-primary-foreground">
+      <section className="section-padding bg-accent text-white">
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <motion.div
@@ -456,7 +608,7 @@ const Capabilities = () => {
               <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-6">
                 Skilled Manufacturing Workforce
               </h2>
-              <p className="text-primary-foreground/80 leading-relaxed mb-8">
+              <p className="text-white/80 leading-relaxed mb-8">
                 Behind every machine is a trained, experienced professional. Our workforce is the
                 backbone of our quality system — skilled in SMT operations, THT assembly,
                 inspection, and functional testing.
@@ -473,7 +625,7 @@ const Capabilities = () => {
                     </div>
                     <div>
                       <h4 className="font-semibold text-white mb-1">{item.title}</h4>
-                      <p className="text-primary-foreground/70 text-sm">{item.desc}</p>
+                      <p className="text-white/70 text-sm">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -496,11 +648,11 @@ const Capabilities = () => {
               ].map((item) => (
                 <div
                   key={item.label}
-                  className="bg-primary-foreground/5 border border-primary-foreground/10 rounded-lg p-5 text-center hover:border-accent/30 transition-colors"
+                  className="bg-white/5 border border-white/10 rounded-lg p-5 text-center hover:border-accent/50 transition-colors"
                 >
                   <div className="text-2xl font-bold text-accent mb-1">{item.num}</div>
                   <div className="text-sm font-medium text-white mb-0.5">{item.label}</div>
-                  <div className="text-xs text-primary-foreground/55">{item.sub}</div>
+                  <div className="text-xs text-white/55">{item.sub}</div>
                 </div>
               ))}
             </motion.div>
@@ -523,7 +675,7 @@ const Capabilities = () => {
               detailed quote.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-primary text-white hover:bg-primary/90 px-8">
+              <Button asChild size="lg" className="bg-primary text-white hover:bg-accent/90 px-8">
                 <Link to="/contact">
                   Get a Quote
                   <ArrowRight className="ml-2" size={18} />

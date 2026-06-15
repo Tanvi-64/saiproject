@@ -4,7 +4,7 @@ import sailogo from "../../assets/sailogo3.png";
 
 const Footer = () => {
   return (
-    <footer className="bg-primary text-primary-foreground">
+    <footer className="bg-gray-800 text-primary-foreground">
       <div className="container-wide section-padding">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand */}
@@ -97,7 +97,7 @@ const Footer = () => {
               <li>
                 <a href="mailto:Avpsaitechnoworks@gmail.com" className="flex items-center gap-3 text-primary-foreground/70 hover:text-accent transition-colors text-sm">
                   <Mail size={16} className="text-accent shrink-0" />
-                  Avpsaitechnoworks@gmail.com
+                 AVPSAITECHNOWORKS@gmail.com
                 </a>
               </li>
             </ul>
