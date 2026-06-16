@@ -128,12 +128,12 @@ const Infrastructure = () => {
             transition={{ duration: 0.8 }}
             className="max-w-3xl"
           >
-            <span className="inline-block px-4 py-2 bg-accent/20 border border-accent/30 text-accent rounded-full text-sm font-medium mb-6">
+            <span className="inline-block px-4 py-2 bg-accent/20 border border-accent/30 text-blue-300 rounded-full text-sm font-medium mb-6">
               Our Facility
             </span>
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-6">
               State-of-the-Art{" "}
-              <span className="text-accent">Manufacturing Infrastructure</span>
+              <span className="text-blue-300">Manufacturing Infrastructure</span>
             </h1>
             <p className="text-base md:text-lg xl:text-xl text-primary-foreground/80 leading-relaxed">
               Our 15,000 sq.ft manufacturing facility is purpose-built for high-quality electronics

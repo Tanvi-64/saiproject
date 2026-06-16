@@ -209,12 +209,12 @@ const Capabilities = () => {
             transition={{ duration: 0.8 }}
             className="max-w-3xl"
           >
-            <span className="inline-block px-4 py-2 bg-accent/20 border border-accent/30 text-accent rounded-full text-sm font-medium mb-6">
+            <span className="inline-block px-4 py-2 bg-accent/20 border border-accent/30 text-blue-300 rounded-full text-sm font-medium mb-6">
               Manufacturing Capabilities
             </span>
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-5">
               Advanced EMS{" "}
-              <span className="text-accent">Manufacturing Capabilities</span>
+              <span className="text-blue-300">Manufacturing Capabilities</span>
             </h1>
             <p className="text-base md:text-lg text-primary-foreground/80 leading-relaxed">
               Sai Techno Works operates a fully equipped 15,000 sq.ft manufacturing facility with

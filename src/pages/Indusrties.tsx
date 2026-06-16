@@ -112,12 +112,12 @@ const Industries = () => {
             transition={{ duration: 0.8 }}
             className="max-w-3xl"
           >
-            <span className="inline-block px-4 py-2 bg-accent/20 text-accent rounded-full text-sm font-medium mb-6">
+            <span className="inline-block px-4 py-2 bg-accent/20 text-blue-300 rounded-full text-sm font-medium mb-6">
               Industries We Serve
             </span>
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight mb-6">
               Serving Diverse Industries{" "}
-              <span className="text-accent">with Reliable Electronics Manufacturing</span>
+              <span className="text-blue-300">with Reliable Electronics Manufacturing</span>
             </h1>
             <p className="text-base md:text-lg xl:text-xl text-primary-foreground/80 leading-relaxed">
             Sai Technoworks supports a wide range of industries through high-quality PCB assembly and electronics manufacturing services. Our expertise enables us to deliver reliable, precision-engineered solutions for automotive, solar, telecommunication, pharmaceutical, power, and industrial applications.

@@ -109,12 +109,12 @@ const Services = () => {
             transition={{ duration: 0.8 }}
             className="max-w-4xl"
           >
-            <span className="inline-block px-4 py-2 bg-accent/20 border border-accent/30 text-accent rounded-full text-sm font-medium mb-6">
+            <span className="inline-block px-4 py-2 bg-accent/20 border border-accent/30 text-blue-300 rounded-full text-sm font-medium mb-6">
               Electronics Manufacturing Services (EMS)
             </span>
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-5">
-              Precision PCB Assembly &amp;{" "}
-              <span className="text-accent">EMS Solutions</span>
+              Precision PCB Assembly &{" "}
+              <span className="text-blue-300">EMS Solutions</span>
             </h1>
             <p className="text-base md:text-lg text-primary-foreground/80 leading-relaxed max-w-3xl">
               Sai Techno Works delivers end-to-end Electronics Manufacturing Services — from SMT &amp; THT Assembly to Box Build Integration, Testing, and Quality Control — with advanced capabilities and a commitment to zero-defect production.

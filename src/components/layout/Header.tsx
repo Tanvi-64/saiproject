@@ -49,7 +49,7 @@ const Header = () => {
               </a>
             </div>
             <div className="text-primary-foreground/70 text-xs">
-              Mon – Sun: 9:00 AM – 5:30 PM
+              Mon – Sat: 9:00 AM – 5:30 PM
             </div>
           </div>
         </div>
@@ -68,25 +68,20 @@ const Header = () => {
                   <img src={sailogo} alt="Sai Techno Works" className="w-9 h-9 object-contain" />
                 </div>
                 <div className="flex flex-col min-w-0">
-                  <span className="flex items-center text-base sm:text-lg font-bold leading-tight overflow-hidden">
-                    {"Sai Techno Works".split("").map((char, i) => (
-                      <motion.span
-                        key={i}
-                        initial={{ opacity: 0, y: -8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: 0.05 * i, ease: "easeOut" }}
-                        whileHover={{ y: -2, transition: { duration: 0.15 } }}
-                        style={{
-                          background: `linear-gradient(135deg, #0189C5 0%, #2B3EA1 100%)`,
-                          WebkitBackgroundClip: "text",
-                          WebkitTextFillColor: "transparent",
-                          display: "inline-block",
-                          whiteSpace: char === " " ? "pre" : "normal",
-                        }}
-                      >
-                        {char}
-                      </motion.span>
-                    ))}
+                  <span
+                    className="text-base sm:text-lg font-bold leading-tight truncate select-none relative"
+                    style={{
+                      backgroundImage: `
+                        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Crect width='10' height='10' fill='none'/%3E%3Ccircle cx='0' cy='0' r='1' fill='%23ffffff' opacity='0.6'/%3E%3Ccircle cx='10' cy='0' r='1' fill='%23ffffff' opacity='0.6'/%3E%3Ccircle cx='0' cy='10' r='1' fill='%23ffffff' opacity='0.6'/%3E%3Ccircle cx='10' cy='10' r='1' fill='%23ffffff' opacity='0.6'/%3E%3Ccircle cx='5' cy='5' r='1' fill='%23ffffff' opacity='0.5'/%3E%3Cline x1='0' y1='0' x2='5' y2='0' stroke='%23ffffff' stroke-width='0.6' opacity='0.45'/%3E%3Cline x1='5' y1='0' x2='5' y2='5' stroke='%23ffffff' stroke-width='0.6' opacity='0.45'/%3E%3Cline x1='5' y1='5' x2='10' y2='5' stroke='%23ffffff' stroke-width='0.6' opacity='0.4'/%3E%3Cline x1='0' y1='10' x2='0' y2='5' stroke='%23ffffff' stroke-width='0.6' opacity='0.4'/%3E%3Ccircle cx='5' cy='0' r='0.8' fill='%23ffffff' opacity='0.5'/%3E%3Ccircle cx='0' cy='5' r='0.8' fill='%23ffffff' opacity='0.5'/%3E%3Ccircle cx='10' cy='5' r='0.8' fill='%23ffffff' opacity='0.5'/%3E%3Ccircle cx='5' cy='10' r='0.8' fill='%23ffffff' opacity='0.5'/%3E%3C/svg%3E"),
+                        linear-gradient(115deg, #0189C5 0%, #0a72c4 35%, #1a55b8 65%, #2B3EA1 100%)
+                      `,
+                      backgroundSize: "10px 10px, 100% 100%",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}
+                  >
+                    Sai Techno Works
                   </span>
                   <span className="text-[8px] sm:text-[9px] text-muted-foreground tracking-wider uppercase truncate">Electronics Manufacturing Services</span>
                 </div>
