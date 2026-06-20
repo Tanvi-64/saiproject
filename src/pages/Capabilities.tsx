@@ -225,24 +225,7 @@ const Capabilities = () => {
         </div>
       </section>
 
-      {/* Quick Stats */}
-      <section className="py-8 bg-secondary">
-        <div className="container-wide">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { num: "3", label: "Advanced SMT Lines" },
-              { num: "15,000", label: "Sq.Ft Facility" },
-              { num: "2", label: "Manual Insertion Lines" },
-              { num: "AOI + SPI", label: "Inspection Systems" },
-            ].map((s) => (
-              <div key={s.label} className="text-center p-5 bg-card rounded-lg border border-border shadow-card">
-                <div className="text-2xl font-bold text-accent mb-1">{s.num}</div>
-                <div className="text-xs text-muted-foreground font-medium">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+     
 
       {/* SMT Line Flow */}
       <section className="section-padding">
@@ -369,7 +352,7 @@ const Capabilities = () => {
               and production efficiency.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          <div className="flex flex-wrap justify-center gap-5">
             {capabilities.filter(c => !c.future).map((cap, i) => (
               <motion.div
                 key={cap.title}
@@ -378,7 +361,7 @@ const Capabilities = () => {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeUp}
-                className="card-industrial p-5 group"
+                className="card-industrial p-5 group w-full sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] xl:w-[calc(25%-15px)]"
               >
                 <div className="flex items-start gap-3 mb-4">
                   <div className="w-11 h-11 bg-accent/10 rounded-lg flex items-center justify-center shrink-0 group-hover:bg-accent transition-colors duration-300">
@@ -595,7 +578,7 @@ const Capabilities = () => {
       </section>
 
       {/* Workforce + Stats */}
-      <section className="section-padding bg-accent text-white">
+      <section className="section-padding bg-secondary">
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <motion.div
@@ -605,27 +588,27 @@ const Capabilities = () => {
               variants={fadeUp}
             >
               <span className="text-accent text-sm uppercase tracking-wider font-semibold">Our Workforce</span>
-              <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-6">
                 Skilled Manufacturing Workforce
               </h2>
-              <p className="text-white/80 leading-relaxed mb-8">
+              <p className="text-muted-foreground leading-relaxed mb-8">
                 Behind every machine is a trained, experienced professional. Our workforce is the
                 backbone of our quality system — skilled in SMT operations, THT assembly,
                 inspection, and functional testing.
               </p>
-              <div className="space-y-5">
+              <div className="space-y-4">
                 {[
                   { icon: Users, title: "Trained SMT Operators", desc: "Experienced in running high-speed SMT lines and managing line changeovers" },
                   { icon: Eye, title: "Quality Inspectors", desc: "IPC-A-610 trained inspectors performing visual and automated quality checks" },
                   { icon: Gauge, title: "Process Engineers", desc: "Engineers managing solder paste profiles, reflow recipes, and AOI programming" },
                 ].map((item) => (
                   <div key={item.title} className="flex items-start gap-4">
-                    <div className="w-10 h-10 bg-accent/20 rounded-lg flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center shrink-0">
                       <item.icon className="text-accent" size={18} />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-white mb-1">{item.title}</h4>
-                      <p className="text-white/70 text-sm">{item.desc}</p>
+                      <h4 className="font-semibold text-foreground mb-0.5">{item.title}</h4>
+                      <p className="text-muted-foreground text-sm">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -641,21 +624,52 @@ const Capabilities = () => {
               className="grid grid-cols-2 gap-4 mt-6 lg:mt-0"
             >
               {[
-                { num: "3", label: "SMT Production Lines", sub: "Running in parallel" },
-                { num: "2", label: "Manual THT Lines", sub: "For through-hole assembly" },
-                { num: "AOI", label: "Optical Inspection", sub: "100% board coverage" },
-                { num: "SPI", label: "Paste Inspection", sub: "Pre-placement quality gate" },
+                { num: "3", label: "SMT Production Lines", sub: "Running in parallel", accent: true },
+                { num: "2", label: "Manual THT Lines", sub: "For through-hole assembly", accent: false },
+                { num: "AOI", label: "Optical Inspection", sub: "100% board coverage", accent: false },
+                { num: "SPI", label: "Paste Inspection", sub: "Pre-placement quality gate", accent: true },
               ].map((item) => (
-                <div
+                <motion.div
                   key={item.label}
-                  className="bg-white/5 border border-white/10 rounded-lg p-5 text-center hover:border-accent/50 transition-colors"
+                  whileHover={{ y: -4 }}
+                  transition={{ duration: 0.2 }}
+                  className={`rounded-xl p-5 text-center border transition-shadow duration-300 hover:shadow-elevated ${
+                    item.accent
+                      ? "bg-accent border-accent text-white"
+                      : "bg-card border-border"
+                  }`}
                 >
-                  <div className="text-2xl font-bold text-accent mb-1">{item.num}</div>
-                  <div className="text-sm font-medium text-white mb-0.5">{item.label}</div>
-                  <div className="text-xs text-white/55">{item.sub}</div>
-                </div>
+                  <div className={`text-2xl font-bold mb-1 ${item.accent ? "text-white" : "text-accent"}`}>
+                    {item.num}
+                  </div>
+                  <div className={`text-sm font-semibold mb-0.5 ${item.accent ? "text-white" : "text-foreground"}`}>
+                    {item.label}
+                  </div>
+                  <div className={`text-xs ${item.accent ? "text-white/70" : "text-muted-foreground"}`}>
+                    {item.sub}
+                  </div>
+                </motion.div>
               ))}
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+       {/* Quick Stats */}
+      <section className="py-8 bg-secondary">
+        <div className="container-wide">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { num: "3", label: "Advanced SMT Lines" },
+              { num: "15,000", label: "Sq.Ft Facility" },
+              { num: "2", label: "Manual Insertion Lines" },
+              { num: "AOI + SPI", label: "Inspection Systems" },
+            ].map((s) => (
+              <div key={s.label} className="text-center p-5 bg-card rounded-lg border border-border shadow-card">
+                <div className="text-2xl font-bold text-accent mb-1">{s.num}</div>
+                <div className="text-xs text-muted-foreground font-medium">{s.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

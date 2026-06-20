@@ -49,7 +49,6 @@ const stats = [
   { value: 3, suffix: "", label: "Advanced SMT Lines", icon: Cpu },
   { value: 15000, suffix: " Sq.Ft", label: "Manufacturing Facility", icon: Building2 },
   { value: 2, suffix: "", label: "Manual Insertion Lines", icon: CircuitBoard },
-  { value: 2, suffix: " Systems", label: "AOI + SPI Inspection", icon: ShieldCheck },
 ];
 
 const services = [
@@ -106,19 +105,33 @@ function StatCard({ stat, index }: { stat: typeof stats[0]; index: number }) {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.5, delay: index * 0.12, ease: "easeOut" }}
       viewport={{ once: true }}
-      className="bg-card rounded-lg p-5 text-center shadow-card group hover:-translate-y-1 transition-transform duration-300"
+      whileHover={{ y: -6, scale: 1.03 }}
+      className="relative bg-card rounded-xl p-6 text-center shadow-card border border-border overflow-hidden group cursor-default transition-shadow duration-300 hover:shadow-elevated hover:border-accent/30"
     >
-      <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-accent transition-colors duration-300">
-        <stat.icon className="text-accent group-hover:text-white transition-colors duration-300" size={20} />
-      </div>
-      <div className="text-2xl font-bold text-primary mb-1">
+      {/* accent glow on hover */}
+      <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
+
+      <motion.div
+        initial={{ scale: 0.6, opacity: 0 }}
+        whileInView={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.4, delay: index * 0.12 + 0.2 }}
+        viewport={{ once: true }}
+        className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:bg-accent transition-colors duration-300"
+      >
+        <stat.icon className="text-accent group-hover:text-white transition-colors duration-300" size={22} />
+      </motion.div>
+
+      <div className="text-2xl font-bold text-primary mb-1 relative z-10">
         {count.toLocaleString()}{stat.suffix}
       </div>
-      <div className="text-xs text-muted-foreground font-medium">{stat.label}</div>
+      <div className="text-xs text-muted-foreground font-medium relative z-10">{stat.label}</div>
+
+      {/* bottom accent bar */}
+      <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-accent scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
     </motion.div>
   );
 }
@@ -386,7 +399,6 @@ const Index = () => {
                 {[
                   { label: "High-Speed Pick & Place", icon: Cpu },
                   { label: "Reflow Oven Systems", icon: Factory },
-                  { label: "AOI Inspection", icon: ShieldCheck },
                   { label: "SPI Inspection", icon: ShieldCheck },
                 ].map(({ label, icon: Icon }) => (
                   <div key={label} className="flex items-center gap-3 bg-secondary border border-border rounded-lg p-3 hover:border-accent/30 transition-colors duration-200">
@@ -411,12 +423,11 @@ const Index = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-              className="grid grid-cols-2 gap-4 mt-6 lg:mt-0"
+              className="grid grid-cols-3 gap-4 mt-6 lg:mt-0"
             >
               {[
                 { value: "3", label: "SMT Production Lines", accent: true },
                 { value: "2", label: "Manual Insertion Lines", accent: false },
-                { value: "AOI", label: "Automated Optical Inspection", accent: false },
                 { value: "SPI", label: "Solder Paste Inspection", accent: true },
               ].map((item) => (
                 <motion.div
@@ -531,7 +542,7 @@ const Index = () => {
           {/* Stats Row */}
       <section className="py-8 bg-secondary">
         <div className="container-wide">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-3 gap-4">
             {stats.map((stat, i) => (
               <StatCard key={stat.label} stat={stat} index={i} />
             ))}

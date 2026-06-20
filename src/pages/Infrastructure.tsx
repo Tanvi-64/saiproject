@@ -143,22 +143,6 @@ const Infrastructure = () => {
         </div>
       </section>
 
-      {/* Facility Stats */}
-      <section className="py-12 bg-secondary">
-        <div className="container-wide">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {facilityStats.map((s) => (
-              <div
-                key={s.label}
-                className="text-center p-6 bg-card rounded-lg border border-border shadow-card"
-              >
-                <div className="text-3xl font-bold text-accent mb-1">{s.num}</div>
-                <div className="text-sm text-muted-foreground font-medium">{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Facility Areas */}
       <section className="section-padding">
@@ -442,6 +426,24 @@ const Infrastructure = () => {
                 </div>
               ))}
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      
+      {/* Facility Stats */}
+      <section className="py-12 bg-secondary">
+        <div className="container-wide">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {facilityStats.map((s) => (
+              <div
+                key={s.label}
+                className="text-center p-6 bg-card rounded-lg border border-border shadow-card"
+              >
+                <div className="text-3xl font-bold text-accent mb-1">{s.num}</div>
+                <div className="text-sm text-muted-foreground font-medium">{s.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
